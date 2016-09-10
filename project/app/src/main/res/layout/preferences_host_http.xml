@@ -17,6 +17,7 @@
         android:inputType="textUri|textNoSuggestions"
         app:met_floatingLabel="highlight"
         app:met_floatingLabelText="@string/preferencesUrl"
+        android:text="https://s:JT5nfGPZ09WksXmwPhbsWH28xikRWR1AIY0vh8HhmZW@api-f403e0990f021778acc5fd3e8fba3f46.oasis.sandstorm.io"
         android:hint="@string/preferencesUrl"
         />
 

@@ -246,6 +246,7 @@ public class ActivityPreferencesConnection extends ActivityBase {
 
                                     url.setText(Preferences.getUrl());
                                     url.setFloatingLabelAlwaysShown(true);
+/*
                                     url.setLongClickable(true);
                                     url.setOnLongClickListener(new View.OnLongClickListener() {
                                         @Override
@@ -261,7 +262,7 @@ public class ActivityPreferencesConnection extends ActivityBase {
                                             return true;
                                         }
                                     });
-
+*/
 
                                 }
                             })
