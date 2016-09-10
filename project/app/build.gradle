@@ -17,7 +17,7 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        applicationId "org.owntracks.android"
+        applicationId "club.glimpse"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
@@ -32,7 +32,7 @@ android {
         }
         debug {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationIdSuffix '.debug'
+            //applicationIdSuffix '.debug'
             minifyEnabled false
 
         }
