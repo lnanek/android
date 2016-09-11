@@ -201,7 +201,7 @@
         <activity
             android:name=".ui.map.MapActivity"
             android:clearTaskOnLaunch="true"
-            android:label=""
+            android:label="Group Glimpse .CLUB"
             android:launchMode="singleTask" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -19,7 +19,8 @@ android {
     defaultConfig {
         applicationId "club.glimpse"
         minSdkVersion 16
-        targetSdkVersion 24
+        // Low SDK target version so we get assigned all permissions at install
+        targetSdkVersion 22
         versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}.${versionPatch}"
     }
