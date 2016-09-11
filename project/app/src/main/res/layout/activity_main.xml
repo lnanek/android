@@ -5,12 +5,20 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+    <fragment
+        class="com.here.android.mpa.mapping.MapFragment"
+        android:id="@+id/mapfragment"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"
+        />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:weightSum="1">
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -34,14 +42,8 @@
             android:id="@+id/placesbutton"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:text="Find Places"
+            android:text="Find Places Nearby"
             android:onClick="findPlaces" />
     </LinearLayout>
-
-    <fragment
-        class="com.here.android.mpa.mapping.MapFragment"
-        android:id="@+id/mapfragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </LinearLayout>

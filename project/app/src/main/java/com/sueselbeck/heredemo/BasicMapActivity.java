@@ -145,6 +145,9 @@ public class BasicMapActivity extends Activity {
             Log.i(TAG, "Centering on group center");
             map.setCenter(new GeoCoordinate(mGroupCenterLat, mGroupCenterLon, 0.0),
                     Map.Animation.NONE);
+
+            showGroupCenterMarker();
+
         } else {
             Log.i(TAG, "No Group center extras");
 
@@ -157,6 +160,31 @@ public class BasicMapActivity extends Activity {
         // Display position indicator
         map.getPositionIndicator().setVisible(true);
 
+    }
+
+    private void showGroupCenterMarker() {
+
+        // Create a custom marker image
+        com.here.android.mpa.common.Image myImage =
+                new com.here.android.mpa.common.Image();
+
+        try {
+            myImage.setImageResource(R.drawable.ic_launcher);
+        } catch (IOException e) {
+            finish();
+        }
+
+        // Create the MapMarker
+        MapMarker myMapMarker =
+                new MapMarker(new GeoCoordinate(mGroupCenterLat, mGroupCenterLon), myImage);
+
+
+        myMapMarker.setDescription("  ");
+        myMapMarker.setTitle("  \n  Meet HERE  ");
+
+        map.addMapObject(myMapMarker);
+
+        myMapMarker.showInfoBubble();
     }
 
     // Create a gesture listener and add it to the MapFragment
