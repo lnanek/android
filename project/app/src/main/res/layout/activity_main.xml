@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="MY STEP GOAL:"
+            android:visibility="gone"
             android:id="@+id/textView" />
 
         <EditText
@@ -25,6 +26,7 @@
             android:id="@+id/editSteps"
             android:text="2500"
             android:singleLine="true"
+            android:visibility="gone"
             android:layout_gravity="center_horizontal"
             android:textAlignment="center" />
 

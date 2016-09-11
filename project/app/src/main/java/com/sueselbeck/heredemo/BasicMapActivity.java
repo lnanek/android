@@ -84,6 +84,10 @@ public class BasicMapActivity extends Activity {
         mapFragment.init(new OnEngineInitListener() {
             @Override
             public void onEngineInitializationCompleted(OnEngineInitListener.Error error) {
+                if (isFinishing()) {
+                    return;
+                }
+
                 if (error == OnEngineInitListener.Error.NONE) {
                     mapFragment.getMapGesture().addOnGestureListener(listener);
                     onMapFragmentInitializationCompleted();
@@ -128,6 +132,15 @@ public class BasicMapActivity extends Activity {
         // retrieve a reference of the map from the map fragment
         map = mapFragment.getMap();
 
+
+        // start the position manager
+        posManager = PositioningManager.getInstance();
+        PositioningManager.getInstance().addListener(new WeakReference<>(positionListener));
+        posManager.start(PositioningManager.LocationMethod.GPS_NETWORK);
+
+        placesContainer = new MapContainer();
+        map.addMapObject(placesContainer);
+
         if ( null != mGroupCenterLat && null != mGroupCenterLon ) {
             Log.i(TAG, "Centering on group center");
             map.setCenter(new GeoCoordinate(mGroupCenterLat, mGroupCenterLon, 0.0),
@@ -140,14 +153,6 @@ public class BasicMapActivity extends Activity {
                     Map.Animation.NONE);
         }
         map.setZoomLevel(14);
-
-        // start the position manager
-        posManager = PositioningManager.getInstance();
-        PositioningManager.getInstance().addListener(new WeakReference<>(positionListener));
-        posManager.start(PositioningManager.LocationMethod.GPS_NETWORK);
-
-        placesContainer = new MapContainer();
-        map.addMapObject(placesContainer);
 
         // Display position indicator
         map.getPositionIndicator().setVisible(true);
