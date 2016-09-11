@@ -237,7 +237,7 @@ public class BasicMapActivity extends Activity {
                                               GeoPosition position, boolean isMapMatched) {
                     // set the center only when the app is in the foreground
                     // to reduce CPU consumption
-                    if (!paused) {
+                    if (!paused && null == mGroupCenterLat && null == mGroupCenterLon) {
                         map.setCenter(position.getCoordinate(),
                                 Map.Animation.LINEAR);
                     }
