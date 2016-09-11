@@ -1,33 +1,31 @@
+<html>
+	<head>
+	
 <script type="text/javascript">
-    window.onload = function() {
-        var method = 'iframe';
-        var fallbackFunction = function() {
-            if (method == 'iframe') {
-                window.location = "market://details?id=club.glimpse";
-            }
-        };
-        var addIFrame = function() {
-            var iframe = document.createElement("iframe");
-            iframe.style.border = "none";
-            iframe.style.width = "1px";
-            iframe.style.height = "1px";
-            iframe.src = "groupglimpse://a1b22c333";
-            document.body.appendChild(iframe);
-        };
-        var loadChromeIntent = function() {
-            method = 'intent';
-            document.location = "intent://a1b22c333/#Intent;scheme=groupglimpse;package=club.glimpse;end";
-        };
-        if (navigator.userAgent.match(/Chrome/) && !navigator.userAgent.match("Version/")) {
-            loadChromeIntent();
-        }
-        else if (navigator.userAgent.match(/Firefox/)) {
-            window.location = "groupglimpse://a1b22c333";
-        }
-        else {
-            addIFrame();
-        }
-        setTimeout(fallbackFunction, 750);
-    };
+
+    var store_loc = "https://play.google.com/store/apps/details?id=club.glimpse";
+
+    var app_loc = "groupglimpse://" + location.hash.substring(2);
+
+      var w = null;
+      try {
+        w = window.open(app_loc, '_blank');
+      } catch (e) {
+        // no exception
+      }
+      if (w) { window.close(); }
+      else { window.location = app_loc; }
+
+}
 </script>
+
+	</head>
+
+	<body>
+
+
+	</body>
+
+</html>
+
 
