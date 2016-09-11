@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.PopupMenu;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -42,6 +43,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.owntracks.android.ui.base.navigator.Navigator;
 
+import java.util.List;
 import java.util.WeakHashMap;
 
 import javax.inject.Inject;
@@ -293,6 +295,23 @@ public class MapActivity extends BaseActivity<UiActivityMapBinding, MapMvvm.View
 
     @Override
     public void onMapClick(LatLng latLng) {
+        Log.i("MapActivity", "onMapClick");
+
+        List<FusedContact> contacts = viewModel.getContacts();
+        if ( null == contacts ) {
+            Log.i("MapActivity", "onMapClick no contacts");
+
+        } else if ( contacts.isEmpty() ) {
+            Log.i("MapActivity", "onMapClick empty contacts");
+
+        } else {
+            for (Object contactObject : viewModel.getContacts()) {
+                FusedContact contact = (FusedContact) contactObject;
+
+                Log.i("MapActivity", "contact = " + contact.getLatLng());
+            }
+        }
+
         queueActionModeFree();
         viewModel.onMapClick();
     }
