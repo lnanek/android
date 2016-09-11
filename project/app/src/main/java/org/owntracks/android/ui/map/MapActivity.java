@@ -312,6 +312,9 @@ public class MapActivity extends BaseActivity<UiActivityMapBinding, MapMvvm.View
             }
         }
 
+        LatLng center = CenterOpener.getCenter(contacts);
+        CenterOpener.openHereMapsAt(this, center);
+
         queueActionModeFree();
         viewModel.onMapClick();
     }

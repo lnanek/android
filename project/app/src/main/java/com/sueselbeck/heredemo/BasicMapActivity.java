@@ -1,6 +1,7 @@
 package com.sueselbeck.heredemo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.here.android.mpa.common.GeoCoordinate;
@@ -29,6 +30,7 @@ import com.here.android.mpa.search.ExploreRequest;
 import com.here.android.mpa.search.PlaceLink;
 import com.here.android.mpa.search.ResultListener;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -40,6 +42,12 @@ import java.util.List;
 import java.util.Locale;
 
 public class BasicMapActivity extends Activity {
+
+    public static final String LAT_EXTRA = "LAT_EXTRA";
+
+    public static final String LON_EXTRA = "LON_EXTRA";
+
+    private static final String TAG = BasicMapActivity.class.getSimpleName();
 
     // map embedded in the map fragment
     private Map map = null;
@@ -54,11 +62,22 @@ public class BasicMapActivity extends Activity {
     private MapMarker selectedMapMarker = null;
     private MapRoute mapRoute = null;
 
+    private Double mGroupCenterLat;
+    private Double mGroupCenterLon;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        if ( null != intent && intent.hasExtra(LAT_EXTRA) && intent.hasExtra(LON_EXTRA )) {
+            mGroupCenterLat = getIntent().getDoubleExtra(LAT_EXTRA, 0);
+            mGroupCenterLon = getIntent().getDoubleExtra(LON_EXTRA, 0);
+            Log.i(TAG, "Group center: " + mGroupCenterLat + ", " + mGroupCenterLon);
+        } else {
+            Log.i(TAG, "No Group center extras");
+        }
 
         mapFragment = (MapFragment)getFragmentManager().findFragmentById(
                 R.id.mapfragment);
@@ -109,6 +128,19 @@ public class BasicMapActivity extends Activity {
         // retrieve a reference of the map from the map fragment
         map = mapFragment.getMap();
 
+        if ( null != mGroupCenterLat && null != mGroupCenterLon ) {
+            Log.i(TAG, "Centering on group center");
+            map.setCenter(new GeoCoordinate(mGroupCenterLat, mGroupCenterLon, 0.0),
+                    Map.Animation.NONE);
+        } else {
+            Log.i(TAG, "No Group center extras");
+
+            // Set the map center coordinate to the current position
+            map.setCenter(posManager.getPosition().getCoordinate(),
+                    Map.Animation.NONE);
+        }
+        map.setZoomLevel(14);
+
         // start the position manager
         posManager = PositioningManager.getInstance();
         PositioningManager.getInstance().addListener(new WeakReference<>(positionListener));
@@ -120,10 +152,6 @@ public class BasicMapActivity extends Activity {
         // Display position indicator
         map.getPositionIndicator().setVisible(true);
 
-        // Set the map center coordinate to the current position
-        map.setCenter(posManager.getPosition().getCoordinate(),
-                Map.Animation.NONE);
-        map.setZoomLevel(14);
     }
 
     // Create a gesture listener and add it to the MapFragment
