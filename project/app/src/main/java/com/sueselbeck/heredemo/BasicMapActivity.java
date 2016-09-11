@@ -283,6 +283,8 @@ public class BasicMapActivity extends Activity {
 
     public void findPlaces(View view) {
 
+        Log.i(TAG, "findPlaces");
+
         // clear the map
         if (mapRoute != null) {
             map.removeMapObject(mapRoute);

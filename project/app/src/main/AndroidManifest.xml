@@ -79,14 +79,6 @@
                 </action>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
-            <intent-filter>
-                <data android:scheme="groupglimpse" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-            </intent-filter>
-
         </activity>
         
         <activity
@@ -244,9 +236,19 @@
             android:clearTaskOnLaunch="true"
             android:label="Group Glimpse .CLUB"
             android:launchMode="singleTask" >
+
+            <!-- Start from clicking icon in Launcher -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- Start from groupglimpse:// custom protocol link -->
+            <intent-filter>
+                <data android:scheme="groupglimpse" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
             </intent-filter>
 
         </activity>

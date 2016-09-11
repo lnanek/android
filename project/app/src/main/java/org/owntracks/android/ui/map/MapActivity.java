@@ -293,9 +293,27 @@ public class MapActivity extends BaseActivity<UiActivityMapBinding, MapMvvm.View
 
     }
 
+    // When map is tapped, trigger meet up functionality
     @Override
     public void onMapClick(LatLng latLng) {
         Log.i("MapActivity", "onMapClick");
+
+        meetUp();
+
+        queueActionModeFree();
+        viewModel.onMapClick();
+    }
+
+    // When meet up button is pressed, trigger meet up functionality
+    public void meetUp(View view) {
+        Log.i("MapActivity", "meetUp");
+
+        meetUp();
+    }
+
+    public void meetUp() {
+
+        // Read all contacts
 
         List<FusedContact> contacts = viewModel.getContacts();
         if ( null == contacts ) {
@@ -312,11 +330,12 @@ public class MapActivity extends BaseActivity<UiActivityMapBinding, MapMvvm.View
             }
         }
 
+        // Find the center
         LatLng center = CenterOpener.getCenter(contacts);
+
+        // Open HERE Maps
         CenterOpener.openHereMapsAt(this, center);
 
-        queueActionModeFree();
-        viewModel.onMapClick();
     }
 
     @Override
