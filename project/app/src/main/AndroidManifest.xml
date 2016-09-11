@@ -71,6 +71,15 @@
                 </action>
             </intent-filter>
         </service>
+
+        <activity android:name="com.sueselbeck.heredemo.BasicMapActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="club.groupglimpse.HERE" >
+                </action>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         
         <activity
             android:name=".activities.ActivityRegions"
