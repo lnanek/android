@@ -34,7 +34,13 @@
     <!-- To access Google Play Services -->
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
-
+	<!-- HERE Maps permissions -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -49,10 +55,28 @@
             android:name="android.support.PARENT_ACTIVITY"
             android:value=".ui.map.MapActivity" />
 
+		<!-- HERE Maps authentication -->
+        <meta-data android:name="com.here.android.maps.appid" android:value="d4eD2WNRbbdxkDTudl3w"/>
+        <meta-data android:name="com.here.android.maps.apptoken" android:value="yDX5MHx6TbCTQ5xBB4lB0w"/>
+        <meta-data android:name="com.here.android.maps.license.key"
+            android:value="Fu4VclUTGrx6kimfMU74CC1cRR3gtswBJ3rOCqHMeZpm9/uNiSDFcKBAQ6fWBXCQGxVwgp0tERdpWi0gjktzC2OAZieCCMideoH00x4UPd4Eb/Xsy/elefSfW0hpSA7kTrHLbpuS3k8U7qM0I/iD/yFUs5yJe8/t6rFhTFwB24yl88wCEJDyFP+XFajtsb2lS7mqzhLlVh+jGp/xpRNp0yAsf9Ow3NhAw3I/LTKCgsP6ZmsOa+ZnqhiriwyLF6ucXqX80JDwlSotckgTd27QOw2B4FoHMUbEwwiuyKpTY4c4guUiceJn9Csw3qHUeflckcayP5/LHXc9BYZgZK0GFh26BgJ0lK007M2u3KjGvw6Qauory4565c8dhFVlsv+y5Vz7s6Jwnru+VoC+/QmbKahvRAlC0c16DFeNOOAs6i09NQ3DBK8gyPCJjvOukQAniVR1s+zYxxVtjT38VpFYNtDevmsj1mOTL6jFiXmcvHLtlP02KMMueIgvoz7ri5+XhpT+x92unbnJEiSBR7JB8s0yZZIIPwxeqYPp4Uv2hp7coAVw1FJZje8GhW73ymE8c/ZCnrkmFhA4gjGjUQ5OEjUYpb2FSlaRO1t8k+dJxT9lN4lcOGlnmxS1ww/QH/u2K7X8DvZHVTarftHfQVN+N+K6dbobtB0BrUcCvIMZUQA="/>
+
+        <service
+            android:name="com.here.android.mpa.service.MapService"
+            android:label="HereMapService"
+            android:process="global.Here.Map.Service.v2"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.here.android.mpa.service.MapService" >
+                </action>
+            </intent-filter>
+        </service>
+        
         <activity
             android:name=".activities.ActivityRegions"
             android:label="@string/title_activity_regions"
             android:launchMode="singleTop" />
+            
         <activity
             android:name=".activities.ActivityRegion"
             android:label="@string/title_activity_region"

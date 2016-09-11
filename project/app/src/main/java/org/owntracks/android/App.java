@@ -40,11 +40,12 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.preference.PreferenceManager;
 import android.provider.Settings.Secure;
+import android.support.multidex.MultiDexApplication;
 import android.text.format.DateUtils;
 
 import timber.log.Timber;
 
-public class App extends Application  {
+public class App extends MultiDexApplication {
     private static App sInstance;
     private static SimpleDateFormat dateFormater;
     private static SimpleDateFormat dateFormaterToday;
