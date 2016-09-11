@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MapTest</string>
+    <string name="action_settings">Settings</string>
+    <string name="label_button_gohome">Go Home</string>
+    <string name="label_button_changescheme">Change Map Scheme</string>
+    <string name="label_button_findplaces">Find Places</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="MY STEP GOAL:"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editSteps"
+            android:text="2500"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal"
+            android:textAlignment="center" />
+
+        <android.widget.Button
+            android:id="@+id/placesbutton"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:text="@string/label_button_findplaces"
+            android:onClick="findPlaces" />
+    </LinearLayout>
+
+    <fragment
+        class="com.here.android.mpa.mapping.MapFragment"
+        android:id="@+id/mapfragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
